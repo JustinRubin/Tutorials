@@ -85,6 +85,7 @@
 
 - (void) configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    // initialize rows to be unchecked
     BOOL isChecked = NO;
     if (indexPath.row == 0) {
         isChecked = _row0checked;
@@ -98,6 +99,7 @@
         isChecked = _row4checked;
     }
     
+    // push the state of the row to the cell
     if (isChecked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {

@@ -107,35 +107,24 @@
     }
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  // what is the cell at this indexPath that has been passed along
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+// method to toggle the "checked" state in the data model, then updates the view
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    BOOL isChecked = NO;
-    
     if (indexPath.row == 0) {  // find the row in question
-        isChecked = _row0checked;  // store the state of the row in temporary local variable "isChecked"
         _row0checked = !_row0checked;  // set the state to the opposite of its current state
     } else if (indexPath.row == 1) {
-        isChecked = _row1checked;
         _row1checked = !_row1checked;
     } else if (indexPath.row == 2) {
-        isChecked = _row2checked;
         _row2checked = !_row2checked;
     } else if (indexPath.row == 3) {
-        isChecked = _row3checked;
         _row3checked = !_row3checked;
     } else if (indexPath.row == 4) {
-        isChecked = _row4checked;
         _row4checked = !_row4checked;
     }
     
-    if (isChecked) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    
+    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

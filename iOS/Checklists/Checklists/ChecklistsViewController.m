@@ -72,17 +72,20 @@
     return [_items count];  // returns the number of rows in "_items"
 }
 
-- (void) configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void) configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
 {
-    ChecklistItem *item = _items[indexPath.row];
-    // asks the array for the CheckListItem object at the index that corresponds with the row number
-    // could also write as: ChecklistItem *item = [_items objectAtIndex:indexPath.row];
-    
     if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+}
+
+- (void) configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
+// sets the item's text on the cell's label
+{
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
 }
 
 // Method to obtain a cell for the particular row in question
@@ -94,13 +97,11 @@
     
     ChecklistItem *item = _items[indexPath.row];
     // asks the array for the CheckListItem object at the index that corresponds with the row number
- 
-    UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    // tag = 1000 refers to the label in the table view cell for the view with tag 1000
+    // could also write as: ChecklistItem *item = [_items objectAtIndex:indexPath.row];
     
-    label.text = item.text;
-    
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    // pull the two sets of data from the requested row of the array
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     
     return cell;
 }
@@ -112,9 +113,11 @@
     
     ChecklistItem *item = _items[indexPath.row];
     // asks the array for the CheckListItem object at the index that corresponds with the row number
-    item.checked = !item.checked;
     
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [item toggleChecked];
+
+    
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

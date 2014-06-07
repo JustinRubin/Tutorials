@@ -16,11 +16,9 @@
 @implementation ChecklistsViewController
 
 {
-    ChecklistItem *_row0item;
-    ChecklistItem *_row1item;
-    ChecklistItem *_row2item;
-    ChecklistItem *_row3item;
-    ChecklistItem *_row4item;
+    NSMutableArray *_items;  // declare the NSMutableArray variable
+    // declared that a variable named _items can contain an NSMutableArray object
+    // until an actual NSMutableArray object is instantiated and put into _items, the variable is empty (nil)
 }
 
 - (void) viewDidLoad
@@ -28,25 +26,37 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    _row0item = [[ChecklistItem alloc] init];  // create a new CheckListItem object
-    _row0item.text = @"Walk the dog";  // load text into the object
-    _row0item.checked = NO; // load checked-state into the object
+    _items = [[NSMutableArray alloc] initWithCapacity:20];  // create NSMutableArray object
+    // has initial capacity of 20, but the array can grow to make more room
     
-    _row1item = [[ChecklistItem alloc] init];
-    _row1item.text = @"Brush my teeth";
-    _row1item.checked = YES;
+    ChecklistItem *item;  // create instance variable to hold data being added to "_items"
     
-    _row2item = [[ChecklistItem alloc] init];
-    _row2item.text = @"Learn iOS development";
-    _row2item.checked = YES;
+    // Create a ChecklistItem object and add it to the array "_items"
+    item = [[ChecklistItem alloc] init];  // create a new CheckListItem object
+    item.text = @"Walk the dog";  // load text into the object
+    item.checked = NO; // load checked-state into the object
+    [_items addObject:item];  // add this item to the array
     
-    _row3item = [[ChecklistItem alloc] init];
-    _row3item.text = @"Soccer practice";
-    _row3item.checked = NO;
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Brush my teeth";
+    item.checked = YES;
+    [_items addObject:item];
+
     
-    _row4item = [[ChecklistItem alloc] init];
-    _row4item.text = @"Eat ice cream";
-    _row4item.checked = YES;
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Learn iOS development";
+    item.checked = YES;
+    [_items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Soccer practice";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Eat ice cream";
+    item.checked = YES;
+    [_items addObject:item];
 }
 
 - (void) didReceiveMemoryWarning
@@ -67,6 +77,7 @@
 // "tableview" is the UITableView object on whose behalf these methods are invoked
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
+ 
     UILabel *label = (UILabel *)[cell viewWithTag:1000];  // tag = 1000 refers to the label in the table view cell for the view with tag 1000
     
     if (indexPath.row == 0) {
@@ -88,7 +99,6 @@
     [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     
     return cell;
-    
 }
 
 - (void) configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath

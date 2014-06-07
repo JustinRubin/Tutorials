@@ -149,7 +149,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 // the presence of "commitEditingStyle" in view controller means table view will automatically enable swipe-to-delete
 {
-    [_items removeObjectAtIndex:indexPath.row];  // remove the item being deleted from the data model
+    [_items removeObjectAtIndex:indexPath.row];  // remove the item being deleted from the data model (deallocate)
     
     // delete the corresponding row from the table view
     NSArray *indexPaths = @[indexPath];

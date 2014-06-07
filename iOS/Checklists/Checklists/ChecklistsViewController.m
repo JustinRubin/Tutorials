@@ -137,7 +137,7 @@
     
     // tell the table view about the new row so it can add a new cell for that row
     // first make an NSIndexPath object that points to the new row, using the row number from the newRowIndex variable
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
     
     // create a new, temporary array that stores a single index-path object
     NSArray *indexPaths = @[indexPath];

@@ -69,61 +69,40 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section  // Two parameters: "tableView" and "section"
 // "tableview" is the UITableView object on whose behalf these methods are invoked
 {
-    return 5;  // tells the table view the number of rows of data
-}
-
-// Method to obtain a cell for the particular row in question
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  // Two parameters: "tableView" and "indexPath"
-// "tableview" is the UITableView object on whose behalf these methods are invoked
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
- 
-    UILabel *label = (UILabel *)[cell viewWithTag:1000];  // tag = 1000 refers to the label in the table view cell for the view with tag 1000
-    
-    if (indexPath.row == 0) {
-        label.text = _row0item.text;
-    } 
-    else if (indexPath.row == 1) {
-        label.text = _row1item.text;
-    }
-    else if (indexPath.row == 2) {
-        label.text = _row2item.text;
-    }
-    else if (indexPath.row == 3) {
-        label.text = _row3item.text;
-    }
-    else if (indexPath.row == 4) {
-        label.text = _row4item.text;
-    }
-    
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
-    
-    return cell;
+    return [_items count];  // returns the number of rows in "_items"
 }
 
 - (void) configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    // initialize rows to be unchecked
-    BOOL isChecked = NO;
+    ChecklistItem *item = _items[indexPath.row];
+    // asks the array for the CheckListItem object at the index that corresponds with the row number
+    // could also write as: ChecklistItem *item = [_items objectAtIndex:indexPath.row];
     
-    if (indexPath.row == 0) {
-        isChecked = _row0item.checked;
-    } else if (indexPath.row == 1) {
-        isChecked = _row1item.checked;
-    } else if (indexPath.row == 2) {
-        isChecked = _row2item.checked;
-    } else if (indexPath.row == 3) {
-        isChecked = _row3item.checked;
-    } else if (indexPath.row == 4) {
-        isChecked = _row4item.checked;
-    }
-    
-    // push the state of the row to the cell
-    if (isChecked) {
+    if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+}
+
+// Method to obtain a cell for the particular row in question
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+// Two parameters: "tableView" and "indexPath"
+// "tableview" is the UITableView object on whose behalf these methods are invoked
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
+    
+    ChecklistItem *item = _items[indexPath.row];
+    // asks the array for the CheckListItem object at the index that corresponds with the row number
+ 
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    // tag = 1000 refers to the label in the table view cell for the view with tag 1000
+    
+    label.text = item.text;
+    
+    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    
+    return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -131,17 +110,9 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if (indexPath.row == 0) {  // find the row in question
-        _row0item.checked = !_row0item.checked;  // set the state to the opposite of its current state
-    } else if (indexPath.row == 1) {
-        _row1item.checked = !_row1item.checked;
-    } else if (indexPath.row == 2) {
-        _row2item.checked = !_row2item.checked;
-    } else if (indexPath.row == 3) {
-        _row3item.checked = !_row3item.checked;
-    } else if (indexPath.row == 4) {
-        _row4item.checked = !_row4item.checked;
-    }
+    ChecklistItem *item = _items[indexPath.row];
+    // asks the array for the CheckListItem object at the index that corresponds with the row number
+    item.checked = !item.checked;
     
     [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     

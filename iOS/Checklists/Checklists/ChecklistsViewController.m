@@ -122,4 +122,28 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (IBAction)addItem
+// create a new CheckListItem object, add it to the data model (the _items array)
+// figures out the row number of this new object and then tells the table view to update with the new row
+{
+    NSInteger newRowIndex = [_items count]; // index to add the new row to the end of the array at
+    // works because the count is always 1 greater than the index, since index starts at 0
+    
+    // create new checklist item and add it to the end of the array
+    ChecklistItem *item = [[ChecklistItem alloc] init];
+    item.text = @"I am a new row";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    // tell the table view about the new row so it can add a new cell for that row
+    // first make an NSIndexPath object that points to the new row, using the row number from the newRowIndex variable
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:inSection:0];
+    
+    // create a new, temporary array that stores a single index-path object
+    NSArray *indexPaths = @[indexPath];
+    
+    // tell the table view to insert this new row with an animation
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 @end

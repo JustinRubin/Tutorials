@@ -1,0 +1,24 @@
+<Library>
+	<Book>
+		<Author>Joseph Heller</Author>
+		<Title>Catch-22</Title>
+		<PubDate edition="Trade" isbn="0684833395">09/1996</PubDate>
+		<Publisher>Simon and Schuster</Publisher>
+		<Subject>Fiction</Subject>
+		<Review>heller-catch22.html</Review>
+	</Book>
+	<Book>
+		<Author>Kurt Vonnegut</Author>
+		<Title>Slaughterhouse-Five</Title>
+		<PubDate edition="Paperback" isbn="0440180295">12/1991</PubDate>
+		<Publisher>Dell</Publisher>
+		<Subject>Fiction</Subject>
+	</Book>
+	<Book>
+		<Author>Truman Capote</Author>
+		<Title>In Cold Blood</Title>
+		<PubDate edition="Paperback" isbn="0451154460">10/1967</PubDate>
+		<Publisher>Signet</Publisher>
+		<Subject>Fiction</Subject>
+	</Book>	
+</Library>

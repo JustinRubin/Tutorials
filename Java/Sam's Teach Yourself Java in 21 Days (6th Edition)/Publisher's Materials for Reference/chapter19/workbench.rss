@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Workbench</title>
+    <link>http://workbench.cadenhead.org/</link>
+    <description>Programming, publishing, politics, and popes</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <item>
+      <title>Tech Journalist Quits the Internet</title>
+      <link>http://workbench.cadenhead.org/news/3678</link>
+      <pubDate>Wed, 02 May 2012 13:43:40 -0400</pubDate>
+      <guid isPermaLink="false">tag:cadenhead.org,2012:weblog.3678</guid>
+      <enclosure length="2498623" type="audio/mpeg"
+          url="http://mp3.cadenhead.org/3678.mp3" />
+    </item>
+    <item>
+      <title>My First Trip into a Debate Spin Room</title>
+      <link>http://workbench.cadenhead.org/news/3674</link>
+      <pubDate>Fri, 27 Jan 2012 19:36:35 -0500</pubDate>
+      <guid isPermaLink="false">tag:cadenhead.org,2012:weblog.3674</guid>
+    </item>
+    <item>
+      <title>Anthony Weiner and the Infidelity Police</title>
+      <link>http://workbench.cadenhead.org/news/3664</link>
+      <pubDate>Tue, 07 Jun 2011 10:37:06 -0400</pubDate>
+      <guid isPermaLink="false">tag:cadenhead.org,2012:weblog.3664</guid>
+    </item>
+  </channel>
+</rss>

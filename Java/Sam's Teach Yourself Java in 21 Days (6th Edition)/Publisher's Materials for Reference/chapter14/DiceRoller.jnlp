@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for the DiceRoller Application -->
+<jnlp
+  codebase="http://www.cadenhead.org/book/java-6-21-days/java"
+  href="DiceRoller.jnlp">
+  <information>
+    <title>DiceRoller Application</title>
+    <vendor>Rogers Cadenhead</vendor>
+    <homepage href="http://www.java21days.com"/>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6"/>
+    <jar href="DiceRoller.jar"/>
+  </resources>
+  <security>
+    <all-permissions/>
+  </security>
+  <application-desc main-class="DiceRoller"/>
+</jnlp>
